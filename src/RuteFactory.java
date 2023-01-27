@@ -23,7 +23,6 @@ public class RuteFactory {
     }
 
     private void setSlange() {
-        System.out.println(ruter);
         Rute slange1 = new Slange(10, ruter.get(5));
         Rute slange2 = new Slange(30, ruter.get(10));
         Rute slange3 = new Slange(65, ruter.get(50));

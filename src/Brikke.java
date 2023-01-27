@@ -4,9 +4,7 @@ public class Brikke {
   private Rute rute;
   private Brett brett;
 
-  public Brikke(){
 
-  }
   public Brikke(Rute rute, Brett brett) {
     this.brett = brett;
     this.rute = rute;

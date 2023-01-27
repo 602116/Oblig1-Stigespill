@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import static java.lang.Thread.sleep;
-
 public class Stigespill {
 
     private ArrayList<Spiller> spillere;
@@ -13,29 +11,34 @@ public class Stigespill {
         spillere = new ArrayList<>();
         this.antallSpillere = antallSpillere;
         setup();
-        System.out.println();
     }
 
     private void setup(){
-
+        System.out.println("Starter spillet! I dette spillet har vi med " + antallSpillere + " spillere.");
         Brett brett = new Brett(antallRuter);
         for (int i = 0; i < antallSpillere; i++) {
             spillere.add(new Spiller("Spiller " + (i + 1),brett));
         }
     }
     public void start(){
+        int runde = 1;
         while(!flag){
+            System.out.println("Starter runde nummer: " + runde);
             spillRunde();
+            runde++;
         }
     }
 
     public void spillRunde(){
 
         for(int i = 0; !flag && i < spillere.size(); i++){
-            spillere.get(i).spillTur();
-            harVunnet(spillere.get(i).indexBrikke());
+            Spiller player = spillere.get(i);
+
+            System.out.println(player.getNavn() + " spiller sin tur");
+            player.spillTur();
+            harVunnet(player.indexBrikke());
                 if (flag){
-                    System.out.println(spillere.get(i).getNavn());
+                    System.out.println(player.getNavn() + " vant spillet! Gratulerer");
                 }
 //            try{
 //                sleep(1000);
@@ -51,5 +54,6 @@ public class Stigespill {
             this.flag = true;
         }
     }
+
 
 }
