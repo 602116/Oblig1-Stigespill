@@ -36,12 +36,9 @@ class SpillerTest {
         testSpiller4.spillTur();
     }
 
-    @Test
-    void trillTerning() {
-
-    }
 
     @Test
     void indexBrikke() {
+        assertEquals(0,testSpiller1.indexBrikke());
     }
 }

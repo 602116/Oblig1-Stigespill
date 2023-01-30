@@ -24,7 +24,8 @@ class BrikkeTest {
         Brett brett = new Brett(100);
         MockRute rute = new MockRute(2);
         Brikke brikke = new Brikke(rute,brett);
-        Assert.assertEquals(2,brikke);
+        Assert.assertEquals(2,brikke.indexBrikke());
+
     }
 
 }
