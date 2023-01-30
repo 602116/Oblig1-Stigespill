@@ -27,5 +27,11 @@ public class Brikke {
     return rute.getIndex();
   }
 
+  /**
+   * Flytter brikken tilbake start
+   */
+  public void flyttTilbakeTilStart(){
+    rute = brett.getStartPosisjon();
+  }
 
 }

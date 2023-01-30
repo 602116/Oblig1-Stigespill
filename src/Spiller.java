@@ -2,8 +2,10 @@ public class Spiller {
 
     private String navn;
     private Brikke brikke;
+    private int antall;
+    private boolean flag;
 
-    public Spiller(String navn){
+    public Spiller(String navn) {
         this.navn = navn;
     }
 
@@ -23,8 +25,15 @@ public class Spiller {
         int verdi = trillTerning();
 
 
-        System.out.println("\t" + spiller.getNavn() + " står på rute " + brikke.indexBrikke());
-        System.out.println("\t" + spiller.getNavn() + " trillet " + verdi);
+        if (flag) {
+
+            brikke.flyttBrikke(trilletSekserForaaKommeUt(verdi));
+
+        } else {
+
+
+            System.out.println("\t" + this.navn + " står på rute " + brikke.indexBrikke());
+            System.out.println("\t" + this.navn + " trillet " + verdi);
 
             if (verdi == 6) {
                 verdi = trilletSeks(verdi);
@@ -44,9 +53,8 @@ public class Spiller {
         }
 
 
-
-
     }
+
     public int trillTerning() {
         int sum = Terning.trill();
         return sum;
@@ -70,13 +78,33 @@ public class Spiller {
 
                 verdi += nyttTrill;
 
-            return verdi;
+
+            }
         }
-        return 0;
+        trilletTreSekserePaaRad();
+        antall = 0;
+        return verdi;
+    }
+
+    private void trilletTreSekserePaaRad() {
+
+        if (antall == 3) {
+            System.out.println("Trillet tre seksere på rad, flytt tilbake til start");
+            brikke.flyttTilbakeTilStart();
+            this.flag = true;
+        }
+
+    }
+
+    private int trilletSekserForaaKommeUt(int verdi){
+        if (verdi==6){
+            this.flag = false;
+            return 6;
+        }else return 0;
     }
 
 
-    public int indexBrikke(){
+    public int indexBrikke() {
         return brikke.indexBrikke();
     }
 

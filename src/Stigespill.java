@@ -1,11 +1,12 @@
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Stigespill {
 
     private ArrayList<Spiller> spillere;
-    private int antallSpillere;
     private final int antallRuter = 100;
     private boolean flag = false;
+
 
     public Stigespill(){
         spillere = new ArrayList<>();
@@ -13,6 +14,13 @@ public class Stigespill {
     }
 
     private void setup(){
+
+        int antallSpillere = Integer.parseInt(JOptionPane.showInputDialog("Skriv inn antall spillere"));
+
+        while(antallSpillere < 2 || antallSpillere > 4){
+            System.out.println("Ugyldig antall spillere");
+            antallSpillere = Integer.parseInt(JOptionPane.showInputDialog("Skriv inn antall spillere"));
+        }
         System.out.println("Starter spillet! I dette spillet har vi med " + antallSpillere + " spillere.");
         Brett brett = new Brett(antallRuter);
         for (int i = 0; i < antallSpillere; i++) {
