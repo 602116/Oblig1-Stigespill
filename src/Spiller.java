@@ -2,12 +2,9 @@ public class Spiller {
 
     private String navn;
     private Brikke brikke;
-    private int antall;
+    private final int ANTALL_SEKSERE = 2;
+    private int antallSeksere;
     private boolean flag;
-
-    public Spiller(String navn) {
-        this.navn = navn;
-    }
 
     public Spiller(String navn, Brett brett) {
         this.navn = navn;
@@ -19,6 +16,9 @@ public class Spiller {
         return navn;
     }
 
+    /**
+     * spiller turen til spilleren
+     */
     public void spillTur() {
 
 
@@ -35,22 +35,12 @@ public class Spiller {
             System.out.println("\t" + this.navn + " står på rute " + brikke.indexBrikke());
             System.out.println("\t" + this.navn + " trillet " + verdi);
 
-            if (verdi == 6) {
-                verdi = trilletSeks(verdi);
-            }
+            verdi = trilletSeks(verdi);
 
-            if (brikke.indexBrikke() + verdi > 99) {
+            flyttSjekk(verdi);
 
-
-                System.out.println("Kan ikke flytte pga for høy sum. Står på samme rute");
-            } else {
-                brikke.flyttBrikke(verdi);
-
-
-                System.out.println("\t" + this.navn + " flytter " + verdi + " ruter");
-                System.out.println("\t" + this.navn + " landet på rute " + brikke.indexBrikke());
-            }
         }
+    }
 
 
     }
@@ -68,7 +58,7 @@ public class Spiller {
 
             if (sum == 6) {
 
-                this.antall++;
+                this.antallSeksere++;
 
                 System.out.println("\t" + this.getNavn() + " får nytt kast");
 
@@ -82,7 +72,7 @@ public class Spiller {
             }
         }
         trilletTreSekserePaaRad();
-        antall = 0;
+        antallSeksere = 0;
         return verdi;
     }
 
@@ -92,6 +82,7 @@ public class Spiller {
             System.out.println("Trillet tre seksere på rad, flytt tilbake til start");
             brikke.flyttTilbakeTilStart();
             this.flag = true;
+
         }
 
     }
@@ -99,8 +90,8 @@ public class Spiller {
     private int trilletSekserForaaKommeUt(int verdi){
         if (verdi==6){
             this.flag = false;
-            return 6;
-        }else return 0;
+            return verdi;
+        } else return 0;
     }
 
 
