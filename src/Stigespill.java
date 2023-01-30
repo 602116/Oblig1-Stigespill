@@ -7,9 +7,8 @@ public class Stigespill {
     private final int antallRuter = 100;
     private boolean flag = false;
 
-    public Stigespill(int antallSpillere){
+    public Stigespill(){
         spillere = new ArrayList<>();
-        this.antallSpillere = antallSpillere;
         setup();
     }
 

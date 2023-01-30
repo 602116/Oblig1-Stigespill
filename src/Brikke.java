@@ -11,11 +11,18 @@ public class Brikke {
   }
 
 
-
+  /**
+   *
+   * @param sum - Antall ruter brikken skal flytte
+   */
   public void flyttBrikke(int sum){
     rute = brett.finnRute(rute, sum);
   }
 
+  /**
+   *
+   * @return - index til brikken
+   */
   public int indexBrikke(){
     return rute.getIndex();
   }

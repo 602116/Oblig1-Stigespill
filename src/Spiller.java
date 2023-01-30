@@ -17,9 +17,8 @@ public class Spiller {
         return navn;
     }
 
-    public void spillTur(){
+    public void spillTur() {
 
-        Spiller spiller = new Spiller(this.navn);
 
         int verdi = trillTerning();
 
@@ -27,14 +26,21 @@ public class Spiller {
         System.out.println("\t" + spiller.getNavn() + " står på rute " + brikke.indexBrikke());
         System.out.println("\t" + spiller.getNavn() + " trillet " + verdi);
 
-       verdi += trilletSeks(verdi);
+            if (verdi == 6) {
+                verdi = trilletSeks(verdi);
+            }
 
-        if(brikke.indexBrikke() + verdi > 99){
-            System.out.println("Kan ikke flytte pga for høy sum. Står på samme rute");
-        } else{
-            brikke.flyttBrikke(verdi);
-            System.out.println("\t" + spiller.getNavn() + " flytter " + verdi + " ruter");
-            System.out.println("\t" + spiller.getNavn() + " landet på rute " + brikke.indexBrikke());
+            if (brikke.indexBrikke() + verdi > 99) {
+
+
+                System.out.println("Kan ikke flytte pga for høy sum. Står på samme rute");
+            } else {
+                brikke.flyttBrikke(verdi);
+
+
+                System.out.println("\t" + this.navn + " flytter " + verdi + " ruter");
+                System.out.println("\t" + this.navn + " landet på rute " + brikke.indexBrikke());
+            }
         }
 
 
@@ -46,14 +52,23 @@ public class Spiller {
         return sum;
     }
 
-    private int trilletSeks(int sum){
-        if(sum == 6){
-            System.out.println("\t" + this.getNavn() + " får nytt kast");
-            int nyttTrill = trillTerning();
-            int verdi = 0;
-            System.out.println("\t" + "Nytt trill " + nyttTrill);
-            verdi = nyttTrill;
+    private int trilletSeks(int sum) {
 
+        int verdi = sum;
+
+        while (verdi % 6 == 0 && antall <= 3) {
+
+            if (sum == 6) {
+
+                this.antall++;
+
+                System.out.println("\t" + this.getNavn() + " får nytt kast");
+
+                int nyttTrill = trillTerning();
+
+                System.out.println("\t" + "Nytt trill " + nyttTrill);
+
+                verdi += nyttTrill;
 
             return verdi;
         }
